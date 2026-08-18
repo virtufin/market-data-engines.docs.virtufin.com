@@ -846,7 +846,7 @@ machine per pair.</p>
 pubsub-topics spec's per-pair pattern for these two <em>input</em> topics.
 The pair for an update-delta event is parsed from Binance's own
 combined-stream envelope (<code>payload.stream</code>); the pair for a snapshot
-event is read from the CloudEvent's <code>currency_pair</code> extension
+event is read from the CloudEvent's <code>currencypair</code> extension
 attribute (Binance's raw REST response has no symbol field of its
 own). The worker's <em>output</em> -- state key, <code>changed</code>/<code>gap</code> topics --
 stays genuinely per-pair, matching the spec.</p>
@@ -911,7 +911,7 @@ buffering) updates received while the book isn't <code>Live</code>.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>currency_pairs</code></td>
+<td><code>currencypairs</code></td>
 <td>(all pairs seen)</td>
 <td>Comma-separated allowlist.</td>
 </tr>
@@ -926,12 +926,12 @@ buffering) updates received while the book isn't <code>Live</code>.</p>
 <td><code>act</code> or <code>hyp.&lt;name&gt;</code>.</td>
 </tr>
 <tr>
-<td><code>state_service</code></td>
+<td><code>stateservice</code></td>
 <td><code>workmanager</code></td>
 <td><code>SaveStateRequest.service</code>.</td>
 </tr>
 <tr>
-<td><code>api_host</code></td>
+<td><code>apihost</code></td>
 <td><code>localhost:5002</code></td>
 <td>Gateway host:port.</td>
 </tr>
@@ -970,7 +970,7 @@ for the full deploy sequence and known-gaps list.</p>
     <div class="md-copyright__highlight">
       <div style="display:table;width:100%">
   <span style="display:table-cell">&copy; 2026 Häner Consulting. All Rights Reserved.</span>
-  <span style="display:table-cell;text-align:right">2026-08-17T13:49:13Z</span>
+  <span style="display:table-cell;text-align:right">2026-08-18T06:43:11Z</span>
 </div>
 
     </div>
