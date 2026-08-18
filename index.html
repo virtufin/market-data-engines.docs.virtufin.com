@@ -736,13 +736,12 @@
 
 <h1 id="virtufin-market-data-engines">Virtufin Market Data Engines</h1>
 <p>Deployable <strong>market-data workers</strong> for the WorkManager -- a third
-domain-repo pillar alongside
-<a href="https://strategies.docs.virtufin.com/">virtufin-strategies</a> (producer:
-strategy workers deciding trades) and
-<a href="https://execution-engines.docs.virtufin.com/">virtufin-execution-engines</a>
-(consumer: executor workers placing/simulating trades). Workers here
-ingest and maintain derived market-data state rather than
-participating in the decide/execute trading loop directly.</p>
+domain-repo pillar alongside <code>virtufin-strategies</code> (producer: strategy
+workers deciding trades) and <code>virtufin-execution-engines</code> (consumer:
+executor workers placing/simulating trades) -- their docs sites aren't
+published yet, so not linked here. Workers here ingest and maintain
+derived market-data state rather than participating in the
+decide/execute trading loop directly.</p>
 <pre class="mermaid"><code>flowchart LR
     WS["WebSocketManagerController\n(existing)"]
     HTTP["HttpGetWorker x N\n(one per pair, polls snapshots)"]
@@ -813,7 +812,7 @@ participating in the decide/execute trading loop directly.</p>
     <div class="md-copyright__highlight">
       <div style="display:table;width:100%">
   <span style="display:table-cell">&copy; 2026 Häner Consulting. All Rights Reserved.</span>
-  <span style="display:table-cell;text-align:right">2026-08-18T06:43:11Z</span>
+  <span style="display:table-cell;text-align:right">2026-08-18T08:18:44Z</span>
 </div>
 
     </div>
