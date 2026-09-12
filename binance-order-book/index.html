@@ -856,7 +856,7 @@ own). The worker's <em>output</em> -- state key, <code>changed</code>/<code>gap<
 stays genuinely per-pair, matching the spec.</p>
 <h2 id="snapshot-delivery">Snapshot delivery</h2>
 <p>This worker doesn't call Binance's REST snapshot endpoint itself.
-<code>HttpGetWorker</code> (<code>virtufin-workers/HttpGetWorker</code>) is deployed once
+<code>HttpGetWorker</code> (<code>workers/HttpGetWorker</code>) is deployed once
 per tracked pair (Binance's depth endpoint is single-symbol), and a
 platform <code>Trigger</code> (Dapr Jobs, the same primitive the TUI's Triggers
 page exposes) fires periodically to invoke it. Post-gap recovery
@@ -974,7 +974,7 @@ for the full deploy sequence and known-gaps list.</p>
     <div class="md-copyright__highlight">
       <div style="display:table;width:100%">
   <span style="display:table-cell">&copy; 2026 Häner Consulting. All Rights Reserved.</span>
-  <span style="display:table-cell;text-align:right">2026-09-11T12:14:32Z</span>
+  <span style="display:table-cell;text-align:right">2026-09-12T08:38:38Z</span>
 </div>
 
     </div>
