@@ -842,18 +842,21 @@ whose <code>U</code> (first update id) brackets the book's current
 <p>One worker instance tracks a configurable set of pairs (default: every
 pair it sees) rather than one instance per pair -- one-worker-per-pair
 was judged operationally heavy for Binance spot's 50+ actively-traded
-pairs. Internally, a <code>Dictionary&lt;string, OrderBook&gt;</code> holds one state
-machine per pair.</p>
-<p>The worker subscribes to two <strong>flat, un-suffixed</strong> topics --
-<code>act.exchange.binance.orderbook.update</code> and
-<code>act.exchange.binance.orderbook.snapshot</code> -- rather than the
-pubsub-topics spec's per-pair pattern for these two <em>input</em> topics.
+pairs. Internally, a <code>ConcurrentDictionary&lt;string, L2OrderBook&lt;DecimalAmount,
+DecimalAmount&gt;&gt;</code> (from <code>Virtufin.Base.OrderBooks</code>) holds one book per pair,
+with <code>Level2OrderBookUpdater</code> applying snapshots and diffs.</p>
+<p>The worker subscribes to three <strong>flat, un-suffixed</strong> topics --
+<code>act.exchange.binance.orderbook.update</code>, <code>.snapshot</code>, and the consolidated
+<code>act.exchange.binance.instrument.info</code> -- rather than the pubsub-topics
+spec's per-pair pattern for these <em>input</em> topics.
 The pair for an update-delta event is parsed from Binance's own
 combined-stream envelope (<code>payload.stream</code>); the pair for a snapshot
 event is read from the CloudEvent's <code>currencypair</code> extension
 attribute (Binance's raw REST response has no symbol field of its
-own). The worker's <em>output</em> -- state key, <code>changed</code>/<code>gap</code> topics --
-stays genuinely per-pair, matching the spec.</p>
+own). Prices and sizes are normalized to the instrument's tick/lot
+precision from <code>instrument.info</code>; a pair's book events are skipped until
+that metadata arrives. The worker's <em>output</em> -- state key,
+<code>changed</code>/<code>gap</code> topics -- stays genuinely per-pair, matching the spec.</p>
 <h2 id="snapshot-delivery">Snapshot delivery</h2>
 <p>This worker doesn't call Binance's REST snapshot endpoint itself.
 <code>HttpGetWorker</code> (<code>workers/HttpGetWorker</code>) is deployed once
@@ -974,7 +977,7 @@ for the full deploy sequence and known-gaps list.</p>
     <div class="md-copyright__highlight">
       <div style="display:table;width:100%">
   <span style="display:table-cell">&copy; 2026 Häner Consulting. All Rights Reserved.</span>
-  <span style="display:table-cell;text-align:right">2026-09-13T03:24:16Z</span>
+  <span style="display:table-cell;text-align:right">2026-09-13T10:40:17Z</span>
 </div>
 
     </div>
